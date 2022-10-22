@@ -1,3 +1,6 @@
+#clean docker 
+docker system prune -a
+
 #create persistent storage
 docker volume create grafana-storage
 
