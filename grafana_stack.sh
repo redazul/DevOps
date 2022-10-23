@@ -15,7 +15,7 @@ wget https://raw.githubusercontent.com/grafana/loki/v2.6.1/clients/cmd/promtail/
 
 #start log to correct docker mount /var/log
 sudo $(command -v solana-sys-tuner) --user $(whoami) > sys-tuner.log 2>&1 &
-solana-validator --identity ~/validator-keypair.json --rpc-port 8899 --entrypoint entrypoint.devnet.solana.com:8001 --limit-ledger-size --no-voting --log /var/log/solana-validator.log &
+nohup solana-validator --identity ~/validator-keypair.json --rpc-port 8899 --entrypoint entrypoint.devnet.solana.com:8001 --limit-ledger-size --no-voting --log /var/log/solana-validator.log &
 
 #Run Loki + Promtail
 docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.6.1 -config.file=/mnt/config/loki-config.yaml
